@@ -28,7 +28,13 @@ try await tunnel.start(9090)
 try await tunnel.stop()
 ```
 
-## Update pre-builded [xssnick/Tonutils-Proxy](https://github.com/xssnick/Tonutils-Proxy) library
+## Examples
+
+- [Sample iOS application](https://github.com/0xstragner/ton-proxy-application)
+
+## Update pre-builded library
+
+You can also free to update pre-builded [xssnick/Tonutils-Proxy](https://github.com/xssnick/Tonutils-Proxy) binaries
 
 ```shell
 ./build-artifacts.sh
