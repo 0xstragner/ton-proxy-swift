@@ -12,7 +12,7 @@ A Swift wrapper for the [xssnick/Tonutils-Proxy](https://github.com/xssnick/Tonu
 
 | Safari (NetworkExtension)                                                                                              | WKWebView                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| <img width="120" alt="image" src="https://github.com/0xstragner/ton-proxy-swift/blob/main/Screenshots/0.PNG?raw=true"> | <img width="120" alt="image" src="https://github.com/0xstragner/ton-proxy-swift/blob/main/Screenshots/1.PNG?raw=true"> |
+| <img width="220" alt="image" src="https://github.com/0xstragner/ton-proxy-swift/blob/main/Screenshots/0.PNG?raw=true"> | <img width="220" alt="image" src="https://github.com/0xstragner/ton-proxy-swift/blob/main/Screenshots/1.PNG?raw=true"> |
 
 ## Installation
 
