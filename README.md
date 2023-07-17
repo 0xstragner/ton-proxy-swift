@@ -19,7 +19,7 @@ A Swift wrapper for the [xssnick/Tonutils-Proxy](https://github.com/xssnick/Tonu
 ```swift
 .package(
     url: "https://github.com/0xstragner/ton-proxy-swift.git",
-    .upToNextMajor(from: "0.1.0")
+    .upToNextMajor(from: "0.3.0")
 )
 ```
 
