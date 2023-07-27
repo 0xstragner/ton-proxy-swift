@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VERSION="v1.3.0"
+VERSION="v1.3.1"
 URL="https://github.com/xssnick/Tonutils-Proxy/releases/download/${VERSION}/ios-lib.zip"
 
 ORIGINAL_NAME="tonutils-proxy"
