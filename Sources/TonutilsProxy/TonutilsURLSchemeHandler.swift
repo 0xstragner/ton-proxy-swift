@@ -4,12 +4,13 @@
 
 import Foundation
 import WebKit
+import TonutilsProxyBridge
 
 // MARK: - URLSchemeHandlerSessionType
 
 public enum URLSchemeHandlerSessionType {
     case `default`
-    case proxy(connectionProxyDictionary: [AnyHashable: Any])
+    case proxy([AnyHashable: Any])
 }
 
 // MARK: - TonutilsURLSchemeHandlerDelegate
@@ -26,13 +27,12 @@ public protocol TonutilsURLSchemeHandlerDelegate: AnyObject {
 open class TonutilsURLSchemeHandler: NSObject, WKURLSchemeHandler {
     // MARK: Lifecycle
 
-    public init(address: String, port: UInt16) {
-        self.connectionProxyDictionary = [
-            kCFNetworkProxiesHTTPEnable: true,
-            kCFNetworkProxiesHTTPProxy: address,
-            kCFNetworkProxiesHTTPPort: port,
-        ]
+    public convenience init(address: String, port: UInt16) {
+        self.init()
+        self.parameters = .init(host: address, port: port)
+    }
 
+    public override init() {
         super.init()
     }
 
@@ -44,8 +44,8 @@ open class TonutilsURLSchemeHandler: NSObject, WKURLSchemeHandler {
             return
         }
 
-        if url.isTON {
-            route(urlSchemeTask, with: .proxy(connectionProxyDictionary: connectionProxyDictionary))
+        if let parameters, url.isTON {
+            route(urlSchemeTask, with: .proxy(parameters.connectionProxyDictionary))
         } else {
             route(urlSchemeTask, with: .default)
         }
@@ -59,13 +59,14 @@ open class TonutilsURLSchemeHandler: NSObject, WKURLSchemeHandler {
 
     public weak var delegate: TonutilsURLSchemeHandlerDelegate?
 
+    public var parameters: TPBTunnelParameters?
+
     // MARK: Internal
 
-    internal static let schemas = ["http"]
+    static let schemas = ["http"]
 
     // MARK: Private
 
-    private let connectionProxyDictionary: [AnyHashable: Any]
     private var tasks: [AnyHashable: URLSessionDataTask] = [:]
 
     private func route(
@@ -134,5 +135,15 @@ private extension TonutilsURLSchemeHandler {
                 return session
             }
         }
+    }
+}
+
+private extension TPBTunnelParameters {
+    var connectionProxyDictionary: [AnyHashable: Any] {
+        [
+            kCFNetworkProxiesHTTPEnable: true,
+            kCFNetworkProxiesHTTPProxy: host,
+            kCFNetworkProxiesHTTPPort: port,
+        ]
     }
 }
